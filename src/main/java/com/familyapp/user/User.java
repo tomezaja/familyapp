@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class user {
+public class User {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -22,10 +22,10 @@ public class user {
     private String email;
     private Integer lunchId;
 
-    public user() {
+    public User() {
     }
 
-    public user(Integer id, String name, String picture, String birthday, String email, Integer lunchId) {
+    public User(Integer id, String name, String picture, String birthday, String email, Integer lunchId) {
 
         this.id = id;
         this.name = name;
@@ -35,7 +35,7 @@ public class user {
         this.lunchId = lunchId;
     }
 
-    public user(String name, String picture, String birthday, String email, Integer lunchId) {
+    public User(String name, String picture, String birthday, String email, Integer lunchId) {
         this.name = name;
         this.picture = picture;
         this.birthday = birthday;
