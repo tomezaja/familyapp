@@ -12,5 +12,5 @@ public interface IReservationService {
 
     Reservation create(Reservation reservation);
 
-    Reservation update(long id, Reservation formData);
+    Reservation update(Long id, Reservation formData);
 }

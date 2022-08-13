@@ -1,6 +1,4 @@
-package com.familyapp.user;
-
-import java.time.LocalDate;
+package com.familyapp.lunch;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,15 +9,11 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "users")
+@Table(name="lunchs")
 @Data
-public class User {
-
+public class Lunch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String picture;
-    private LocalDate birthday;
-
+    private String name; 
 }

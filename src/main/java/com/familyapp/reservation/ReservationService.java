@@ -48,7 +48,7 @@ public class ReservationService implements IReservationService {
     
 
     @Override
-    public Reservation update(long id, Reservation formData){
+    public Reservation update(Long id, Reservation formData){
         Reservation oldReservation = this.findById(id);
         if(oldReservation == null){
             return null;
