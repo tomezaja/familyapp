@@ -69,10 +69,10 @@ public class ReservationService implements IReservationService {
         }else{
             oldReservation.setCarId(formData.getCarId());  
         }
-        if (formData.getUserId().equals(null)) {
-            oldReservation.setUserId(oldReservation.getUserId());
+        if (formData.getUser().equals(null)) {
+            oldReservation.setUser(oldReservation.getUser());
         }else{
-            oldReservation.setUserId(formData.getUserId());  
+            oldReservation.setUser(formData.getUser());  
         }
            
        return this.reservations.save(oldReservation);
