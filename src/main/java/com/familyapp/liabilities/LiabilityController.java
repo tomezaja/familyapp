@@ -23,13 +23,13 @@ public class LiabilityController {
             this.liabilityService = ls;
     }
 
-    @GetMapping("/liabilities")
+    @GetMapping("/api/liabilities")
     public List<Liability> findAll() {
         List<Liability> liabilities = this.liabilityService.findAll();
         return liabilities;
     }
 
-    @GetMapping("/liabilities/{id}")
+    @GetMapping("/api/liabilities/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Liability liability = this.liabilityService.findById(id);
         if(liability == null){
@@ -41,7 +41,7 @@ public class LiabilityController {
 
     }
 
-    @DeleteMapping("/liabilities/{id}")
+    @DeleteMapping("/api/liabilities/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.liabilityService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class LiabilityController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/liabilities")
+    @PostMapping("/api/liabilities")
     public ResponseEntity<?> create(@RequestBody Liability liability){
         Liability newLiability = this.liabilityService.create(liability);
         return ResponseEntity.ok(newLiability);
     }
   
-    @PutMapping("/liabilities/{id}")
+    @PutMapping("/api/liabilities/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Liability formData) {
         Liability updatedLiability = this.liabilityService.update(id, formData);
         if(updatedLiability == null){

@@ -23,13 +23,13 @@ public class MessageController {
             this.messageService = ms;
     }
 
-    @GetMapping("/messages")
+    @GetMapping("/api/messages")
     public List<Message> findAll() {
         List<Message> messages = this.messageService.findAll();
         return messages;
     }
 
-    @GetMapping("/messages/{id}")
+    @GetMapping("/api/messages/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Message message = this.messageService.findById(id);
         if(message == null){
@@ -41,7 +41,7 @@ public class MessageController {
 
     }
 
-    @DeleteMapping("/messages/{id}")
+    @DeleteMapping("/api/messages/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.messageService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class MessageController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/messages")
+    @PostMapping("/api/messages")
     public ResponseEntity<?> create(@RequestBody Message messages){
         Message newMessage = this.messageService.create(messages);
         return ResponseEntity.ok(newMessage);
     }
   
-    @PutMapping("/messages/{id}")
+    @PutMapping("/api/messages/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Message formData) {
         Message updatedMessage = this.messageService.update(id, formData);
         if(updatedMessage == null){

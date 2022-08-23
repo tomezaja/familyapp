@@ -23,13 +23,13 @@ public class BillController {
             this.billService = bs;
     }
 
-    @GetMapping("/bills")
+    @GetMapping("/api/bills")
     public List<Bill> findAll() {
         List<Bill> bills = this.billService.findAll();
         return bills;
     }
 
-    @GetMapping("/bills/{id}")
+    @GetMapping("/api/bills/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Bill bill = this.billService.findById(id);
         if(bill == null){
@@ -41,7 +41,7 @@ public class BillController {
 
     }
 
-    @DeleteMapping("/bills/{id}")
+    @DeleteMapping("/api/bills/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.billService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class BillController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/bills")
+    @PostMapping("/api/bills")
     public ResponseEntity<?> create(@RequestBody Bill bill){
         Bill newBill = this.billService.create(bill);
         return ResponseEntity.ok(newBill);
     }
   
-    @PutMapping("/bills/{id}")
+    @PutMapping("/api/bills/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Bill formData) {
         Bill updatedBill = this.billService.update(id, formData);
         if(updatedBill == null){

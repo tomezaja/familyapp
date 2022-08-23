@@ -23,13 +23,13 @@ public class CarController {
             this.carService = cs;
     }
 
-    @GetMapping("/cars")
+    @GetMapping("/api/cars")
     public List<Car> findAll() {
         List<Car> cars = this.carService.findAll();
         return cars;
     }
 
-    @GetMapping("/cars/{id}")
+    @GetMapping("/api/cars/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Car car = this.carService.findById(id);
         if(car == null){
@@ -41,7 +41,7 @@ public class CarController {
 
     }
 
-    @DeleteMapping("/cars/{id}")
+    @DeleteMapping("/api/cars/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.carService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class CarController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/cars")
+    @PostMapping("/api/cars")
     public ResponseEntity<?> create(@RequestBody Car car){
         Car newCar = this.carService.create(car);
         return ResponseEntity.ok(newCar);
     }
   
-    @PutMapping("/cars/{id}")
+    @PutMapping("/api/cars/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Car formData) {
         Car updatedCar = this.carService.update(id, formData);
         if(updatedCar == null){

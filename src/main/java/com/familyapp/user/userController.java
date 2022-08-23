@@ -23,13 +23,13 @@ public class UserController {
             this.userService = us;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/api/users")
     public List<User> findAll() {
         List<User> users = this.userService.findAll();
         return users;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/api/users/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         User user = this.userService.findById(id);
         if(user == null){
@@ -41,7 +41,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/api/users/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.userService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class UserController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/users")
+    @PostMapping("/api/users")
     public ResponseEntity<?> create(@RequestBody User user){
         User newUser = this.userService.create(user);
         return ResponseEntity.ok(newUser);
     }
   
-    @PutMapping("/users/{id}")
+    @PutMapping("/api/users/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody User formData) {
         User updatedUser = this.userService.update(id, formData);
         if(updatedUser == null){

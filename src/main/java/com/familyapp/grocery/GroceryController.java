@@ -23,13 +23,13 @@ public class GroceryController {
             this.groceryService = gs;
     }
 
-    @GetMapping("/groceries")
+    @GetMapping("/api/groceries")
     public List<Grocery> findAll() {
         List<Grocery> users = this.groceryService.findAll();
         return users;
     }
 
-    @GetMapping("/groceries/{id}")
+    @GetMapping("/api/groceries/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Grocery grocery = this.groceryService.findById(id);
         if(grocery == null){
@@ -41,7 +41,7 @@ public class GroceryController {
 
     }
 
-    @DeleteMapping("/groceries/{id}")
+    @DeleteMapping("/api/groceries/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.groceryService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class GroceryController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/groceries")
+    @PostMapping("/api/groceries")
     public ResponseEntity<?> create(@RequestBody Grocery grocery){
         Grocery newGrocery = this.groceryService.create(grocery);
         return ResponseEntity.ok(newGrocery);
     }
   
-    @PutMapping("/groceries/{id}")
+    @PutMapping("/api/groceries/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Grocery formData) {
         Grocery updatedGrocery = this.groceryService.update(id, formData);
         if(updatedGrocery == null){

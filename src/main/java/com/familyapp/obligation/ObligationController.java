@@ -23,13 +23,13 @@ public class ObligationController {
             this.obligationService = os;
     }
 
-    @GetMapping("/obligations")
+    @GetMapping("/api/obligations")
     public List<Obligation> findAll() {
         List<Obligation> obligations = this.obligationService.findAll();
         return obligations;
     }
 
-    @GetMapping("/obligations/{id}")
+    @GetMapping("/api/obligations/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Obligation obligation = this.obligationService.findById(id);
         if(obligation == null){
@@ -41,7 +41,7 @@ public class ObligationController {
 
     }
 
-    @DeleteMapping("/obligations/{id}")
+    @DeleteMapping("/api/obligations/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.obligationService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class ObligationController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/obligations")
+    @PostMapping("/api/obligations")
     public ResponseEntity<?> create(@RequestBody Obligation obligation){
         Obligation newObligation = this.obligationService.create(obligation);
         return ResponseEntity.ok(newObligation);
     }
   
-    @PutMapping("/obligations/{id}")
+    @PutMapping("/api/obligations/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Obligation formData) {
         Obligation updatedObligation = this.obligationService.update(id, formData);
         if(updatedObligation == null){

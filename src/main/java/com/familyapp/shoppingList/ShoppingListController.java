@@ -23,13 +23,13 @@ public class ShoppingListController {
             this.shoppingListService = sls;
     }
 
-    @GetMapping("/shoppingLists")
+    @GetMapping("/api/shoppingLists")
     public List<ShoppingList> findAll() {
         List<ShoppingList> shoppingLists = this.shoppingListService.findAll();
         return shoppingLists;
     }
 
-    @GetMapping("/shoppingLists/{id}")
+    @GetMapping("/api/shoppingLists/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         ShoppingList shoppingList = this.shoppingListService.findById(id);
         if(shoppingList == null){
@@ -41,7 +41,7 @@ public class ShoppingListController {
 
     }
 
-    @DeleteMapping("/shoppingLists/{id}")
+    @DeleteMapping("/api/shoppingLists/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.shoppingListService.delete(id);
         if(!success) {
@@ -52,13 +52,13 @@ public class ShoppingListController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/shoppingLists")
+    @PostMapping("/api/shoppingLists")
     public ResponseEntity<?> create(@RequestBody ShoppingList shoppingList){
         ShoppingList newShoppingList = this.shoppingListService.create(shoppingList);
         return ResponseEntity.ok(newShoppingList);
     }
   
-    @PutMapping("/shoppingLists/{id}")
+    @PutMapping("/api/shoppingLists/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ShoppingList formData) {
         ShoppingList updatedShoppingList = this.shoppingListService.update(id, formData);
         if(updatedShoppingList == null){

@@ -22,13 +22,13 @@ public class LunchController {
             this.lunchService = ls;
     }
 
-    @GetMapping("/lunchs")
+    @GetMapping("/api/lunchs")
     public List<Lunch> findAll() {
         List<Lunch> lunchs = this.lunchService.findAll();
         return lunchs;
     }
 
-    @GetMapping("/lunchs/{id}")
+    @GetMapping("/api/lunchs/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Lunch lunch = this.lunchService.findById(id);
         if(lunch == null){
@@ -40,7 +40,7 @@ public class LunchController {
 
     }
 
-    @DeleteMapping("/lunch/{id}")
+    @DeleteMapping("/api/lunch/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.lunchService.delete(id);
         if(!success) {
@@ -51,13 +51,13 @@ public class LunchController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/lunchs")
+    @PostMapping("/api/lunchs")
     public ResponseEntity<?> create(@RequestBody Lunch lunch){
         Lunch newLunch = this.lunchService.create(lunch);
         return ResponseEntity.ok(newLunch);
     }
   
-    @PutMapping("/lunchs/{id}")
+    @PutMapping("/api/lunchs/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Lunch formData) {
         Lunch updatedLunch = this.lunchService.update(id, formData);
         if(updatedLunch == null){

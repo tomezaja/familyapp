@@ -22,13 +22,13 @@ public class ReservationController {
             this.reservationService = rs;
     }
 
-    @GetMapping("/reservations")
+    @GetMapping("/api/reservations")
     public List<Reservation> findAll() {
         List<Reservation> reservations = this.reservationService.findAll();
         return reservations;
     }
 
-    @GetMapping("/reservations/{id}")
+    @GetMapping("/api/reservations/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Reservation reservation = this.reservationService.findById(id);
         if(reservation == null){
@@ -40,7 +40,7 @@ public class ReservationController {
 
     }
 
-    @DeleteMapping("/reservations/{id}")
+    @DeleteMapping("/api/reservations/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         boolean success = this.reservationService.delete(id);
         if(!success) {
@@ -51,13 +51,13 @@ public class ReservationController {
         return ResponseEntity.ok(true);
     }
 
-    @PostMapping("/reservations")
+    @PostMapping("/api/reservations")
     public ResponseEntity<?> create(@RequestBody Reservation reservation){
         Reservation newReservation = this.reservationService.create(reservation);
         return ResponseEntity.ok(newReservation);
     }
   
-    @PutMapping("/reservations/{id}")
+    @PutMapping("/api/reservations/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Reservation formData) {
         Reservation updatedReservation = this.reservationService.update(id, formData);
         if(updatedReservation == null){
