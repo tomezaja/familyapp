@@ -32,6 +32,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private String username;
+    private String password;
     private String picture;
     private LocalDate birthday;
     @OneToMany(mappedBy = "user")
