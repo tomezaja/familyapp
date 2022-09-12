@@ -2,12 +2,17 @@ package com.familyapp.user;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements IUserService, UserDetailsService {
 
     private UserRepository users;
+    private PasswordEncoder passwordEncoder;
 
     public UserService(UserRepository ur) {
         super();
@@ -41,6 +46,7 @@ public class UserService implements IUserService {
 
     @Override
     public User create(User u){
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         u = this.users.save(u);
         return u;
     }
@@ -72,6 +78,16 @@ public class UserService implements IUserService {
        
 
         return this.users.save(oldUser);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = users.findByUsername(username);
+        if(user == null) {
+         
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), null);
     }
 
 
